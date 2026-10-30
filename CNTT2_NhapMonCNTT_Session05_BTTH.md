@@ -96,7 +96,7 @@ Test-Path .\setup.ps1
 Get-Acl .\setup.ps1 | Format-List
 ```
 
-Nếu tài khoản không có quyền đọc hoặc chạy file, cần dùng tài khoản được cấp quyền hoặc nhờ người quản lý cấp quyền. Không nên tự tắt cơ chế bảo vệ. Cũng cần phân biệt với lỗi do Execution Policy: lỗi đó thường nói rõ script không được tải vì việc chạy script bị vô hiệu hóa. Nếu thông báo chi tiết cho thấy đúng là lỗi Execution Policy, kiểm tra bằng `Get-ExecutionPolicy -List`, rồi có thể đặt chính sách cho tài khoản hiện tại bằng `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` theo hướng dẫn quản trị, sau đó chạy lại `.\setup.ps1`.
+Nếu tài khoản không có quyền đọc hoặc chạy file, cần nhờ người quản lý cấp quyền. Nếu file nằm trong vị trí được bảo vệ và em được phép dùng quyền quản trị, có thể mở PowerShell với quyền quản trị bằng `Start-Process powershell -Verb RunAs`, chuyển đến đúng thư mục rồi chạy lại `.\setup.ps1`. Không nên tự tắt cơ chế bảo vệ. Cũng cần phân biệt với lỗi do Execution Policy: lỗi đó thường nói rõ script không được tải vì việc chạy script bị vô hiệu hóa. Nếu thông báo chi tiết cho thấy đúng là lỗi Execution Policy, kiểm tra bằng `Get-ExecutionPolicy -List`, rồi có thể đặt chính sách cho tài khoản hiện tại bằng `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` theo hướng dẫn quản trị, sau đó chạy lại `.\setup.ps1`.
 
 **3. Log số 1: cảnh báo khi xóa `old-version`**
 
